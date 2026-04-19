@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdEarn</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="https://sad.adsgram.ai/js/sad.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #1a1a2e;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .coin-box {
+            background: #16213e;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            width: 100%;
+            max-width: 350px;
+            box-shadow: 0 0 20px rgba(255,215,0,0.2);
+        }
+        .coin-icon { font-size: 60px; margin-bottom: 10px; }
+        .coin-count {
+            font-size: 48px;
+            font-weight: bold;
+            color: #FFD700;
+            margin: 10px 0;
+        }
+        .coin-label { color: #aaa; margin-bottom: 20px; }
+        .btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 8px 0;
+            transition: 0.2s;
+        }
+        .btn-ad {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            color: white;
+        }
+        .btn-ad:disabled {
+            background: #444;
+            cursor: not-allowed;
+        }
+        .message {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 14px;
+        }
+        .success { background: #1a472a; color: #51cf66; }
+        .error { background: #4a1942; color: #ff6b6b; }
+    </style>
+</head>
+<body>
+    <div class="coin-box">
+        <div class="coin-icon">🪙</div>
+        <div class="coin-count" id="coinCount">0</div>
+        <div class="coin-label">তোমার Coins</div>
+
+        <button class="btn btn-ad" id="adBtn" onclick="showAd()">
+            📺 Ad দেখো → 10 Coin পাও
+        </button>
+
+        <div id="message"></div>
+    </div>
+
+    <script>
+        // Telegram WebApp Init
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+
+        // Coin Count
+        let coins = parseInt(localStorage.getItem('coins') || '0');
+        document.getElementById('coinCount').textContent = coins;
+
+        // Adsgram Setup - TEST Block ID
+        const AdController = window.Adsgram.init({
+            blockId: "int-1277", // Test Block ID
+        });
+
+        function showAd() {
+            const btn = document.getElementById('adBtn');
+            const msg = document.getElementById('message');
+            btn.disabled = true;
+            btn.textContent = '⏳ লোড হচ্ছে...';
+
+            AdController.show().then(() => {
+                // Ad দেখা হলে Coin দাও
+                coins += 10;
+                localStorage.setItem('coins', coins);
+                document.getElementById('coinCount').textContent = coins;
+                msg.className = 'message success';
+                msg.textContent = '✅ +10 Coin পেয়েছ!';
+                btn.textContent = '📺 Ad দেখো → 10 Coin পাও';
+                btn.disabled = false;
+            }).catch(() => {
+                msg.className = 'message error';
+                msg.textContent = '❌ Ad লোড হয়নি, আবার চেষ্টা করো';
+                btn.textContent = '📺 Ad দেখো → 10 Coin পাও';
+                btn.disabled = false;
+            });
+        }
+    </script>
+</body>
+</html>
