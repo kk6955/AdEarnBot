@@ -70,10 +70,10 @@
     <div class="coin-box">
         <div class="coin-icon">🪙</div>
         <div class="coin-count" id="coinCount">0</div>
-        <div class="coin-label"> পাপনের এর বউ নাই </div>
+        <div class="coin-label"> পাপনের এর বউ  </div>
 
         <button class="btn btn-ad" id="adBtn" onclick="showAd()">
-            📺 প্রেম করো মেয়ে পটাও আর আছুলা বাশ খাও
+            📺 পাপনের বউ দেখতে এখানে চাপ দেও
         </button>
 
         <div id="message"></div>
@@ -98,7 +98,7 @@
             const btn = document.getElementById('adBtn');
             const msg = document.getElementById('message');
             btn.disabled = true;
-            btn.textContent = '⏳ লোড হচ্ছে...';
+            btn.textContent = '⏳ কিপটা পাপন...';
 
             AdController.show().then(() => {
                 // Ad দেখা হলে Coin দাও
@@ -107,12 +107,12 @@
                 document.getElementById('coinCount').textContent = coins;
                 msg.className = 'message success';
                 msg.textContent = '✅ +10 Coin পেয়েছ!';
-                btn.textContent = '📺 প্রেম করো মেয়ে পটাও আর আছুলা বাশ খাও';
+                btn.textContent = '📺 পাপনের বউ দেখতে এখানে চাপ দেও';
                 btn.disabled = false;
             }).catch(() => {
                 msg.className = 'message error';
-                msg.textContent = '❌ Ad লোড হয়নি, আবার চেষ্টা করো';
-                btn.textContent = '📺 প্রেম করো মেয়ে পটাও আর আছুলা বাশ খাও';
+                msg.textContent = '❌ দুর তোমারদের কি মনে হয় ঐ হালারে কেউ মাইয়া দিব';
+                btn.textContent = '📺 পাপনের বউ দেখতে এখানে চাপ দেও';
                 btn.disabled = false;
             });
         }
