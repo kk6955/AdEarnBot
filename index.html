@@ -70,10 +70,10 @@
     <div class="coin-box">
         <div class="coin-icon">🪙</div>
         <div class="coin-count" id="coinCount">0</div>
-        <div class="coin-label">তোমার Coins</div>
+        <div class="coin-label"> পাপনের এর বউ নাই </div>
 
         <button class="btn btn-ad" id="adBtn" onclick="showAd()">
-            📺 Ad দেখো → 10 Coin পাও
+            📺 প্রেম করো মেয়ে পটাও আর আছুলা বাশ খাও
         </button>
 
         <div id="message"></div>
@@ -107,12 +107,12 @@
                 document.getElementById('coinCount').textContent = coins;
                 msg.className = 'message success';
                 msg.textContent = '✅ +10 Coin পেয়েছ!';
-                btn.textContent = '📺 Ad দেখো → 10 Coin পাও';
+                btn.textContent = '📺 প্রেম করো মেয়ে পটাও আর আছুলা বাশ খাও';
                 btn.disabled = false;
             }).catch(() => {
                 msg.className = 'message error';
                 msg.textContent = '❌ Ad লোড হয়নি, আবার চেষ্টা করো';
-                btn.textContent = '📺 Ad দেখো → 10 Coin পাও';
+                btn.textContent = '📺 প্রেম করো মেয়ে পটাও আর আছুলা বাশ খাও';
                 btn.disabled = false;
             });
         }
